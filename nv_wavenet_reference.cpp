@@ -49,7 +49,8 @@ void nvWavenetEmbed(std::vector<int>& yInPrev, std::vector<int>& yInCur, Matrix&
         float prev = yInPrev[batch_id]; 
         float cur = yInCur[batch_id]; 
         for (int r=0;r<embeddingsPrev.rows();r++){
-            float embedded = tanh(embeddingsPrev.get(r, prev) + embeddingsCur.get(r, cur));
+            //float embedded = tanh(embeddingsPrev.get(r, prev) + embeddingsCur.get(r, cur));
+            float embedded = embeddingsPrev.get(r, prev) + embeddingsCur.get(r, cur);
             x0.set(r,batch_id,embedded);
         }
     }
@@ -85,7 +86,7 @@ void nvWavenetLayer(int r, int batch_size, Matrix& Wprev, Matrix& Wcur, Matrix& 
     matrix_multiply(skipOut, Wskip, h);
     matrix_add(skipOut, skipOut, skipIn);
     matrix_bias(skipOut,skipOut,Bskip);
-
+    matrix_mul(skipOut,sqrt(0.5));
     if (lastLayer) matrix_relu(skipOut, skipOut);
 
 }

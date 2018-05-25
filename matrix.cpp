@@ -181,3 +181,10 @@ void matrix_softmax(Matrix& dst, Matrix& src) {
         }
     }
 }
+void matrix_mul(Matrix& C, float s) {
+    for (int row = 0; row != C.rows(); ++row) {
+        for (int col = 0; col < C.cols(); ++col) {
+            C.set(row, col, C.get(row, col)*s );
+        }
+    }
+}

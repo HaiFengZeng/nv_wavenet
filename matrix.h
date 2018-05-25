@@ -61,5 +61,5 @@ void matrix_bias(Matrix& C, Matrix&A, Matrix& B);
 void matrix_compare(const char* name, Matrix& A, Matrix& B, float max_error=1.e-6, bool relu=false);
 void matrix_relu(Matrix& dst, Matrix& src); 
 void matrix_softmax(Matrix& dst, Matrix& src);
-
+void matrix_mul(Matrix& C, float s);
 #endif
